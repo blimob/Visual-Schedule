@@ -1,0 +1,24 @@
+{
+  "name": "visual-schedule",
+  "version": "1.0.0",
+  "description": "En modul för att skapa visuella dagscheman med föräldraintegration",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/index.test.js",
+    "start": "node test-app/test-app.js"
+  },
+  "keywords": [
+    "schedule",
+    "family",
+    "children",
+    "visual",
+    "calendar"
+  ],
+  "author": "Blinera Moberg <Blinera.moberg@hotmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blimob/Visual-Schedule.git"
+  }
+}
