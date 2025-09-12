@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "node test/index.test.js",
-    "start": "node test-app/test-app.js"
+    "start": "node test-app/test-activity.js"
   },
   "keywords": [
     "schedule",
