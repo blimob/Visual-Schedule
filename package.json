@@ -1,12 +1,12 @@
 {
   "name": "visual-schedule",
   "version": "1.0.0",
-  "description": "En modul för att skapa visuella dagscheman med föräldraintegration",
+  "description": "A module for creating visual daily schedules with parent integration",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
     "test": "node test/index.test.js",
-    "start": "node test-app/test-activity.js"
+    "start": "node test-app/test-app.js"
   },
   "keywords": [
     "schedule",
