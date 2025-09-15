@@ -1,4 +1,16 @@
+/**
+ * Class representing a child in the system with activities and preferences.
+ * Includes methods for managing activities and visual preferences.
+ */
 export class Child {
+
+  /**
+   * Creates a new Child instance with name, age, and visual preferences.
+   * 
+   * @param {string} name - The name of the child.
+   * @param {number} age - The age of the child (0-18).
+   * @param {object} visualPreferences - Optional visual preferences.
+   */
   constructor (name, age, visualPreferences = {}) {
     if (!name || typeof name !== 'string') {
       throw new Error('Child name must be a non-empty string.')
@@ -25,12 +37,24 @@ export class Child {
     this.lastModified = new Date()
   }
 
+  /**
+   * Converts time string HH:MM to total minutes
+   * 
+   * @returns {boolean} True if time format is valid HH:MM
+   * @param {string} timeStr - Time string to validate
+   */
   generateChildId () {
     const timestamp = Date.now()
     const random = Math.random().toString(36).substring(2, 5)
     return `child_${timestamp}_${random}`
   }
 
+  /**
+   * Validates time format HH:MM
+   * 
+   * @param {string} timeStr - Time string to validate
+   * @returns {boolean} True if time format is valid HH:MM
+   */
   addActivity (activity) {
     if (!activity || typeof activity !== 'object') {
       throw new Error('Activity must be a valid object.')
@@ -54,6 +78,12 @@ export class Child {
     return true
   }
 
+  /**
+   * Removes an activity from this child's schedule by reference or matching properties
+   * 
+   * @param {object} activityToRemove - The activity object to remove
+   * @returns {boolean} True if an activity was removed
+   */
   removeActivity (activityToRemove) {
     const initialLength = this.activities.length
 

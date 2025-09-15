@@ -1,4 +1,13 @@
+/**
+ * WeekdayColors Class
+ * Provides color codes for each day of the week in English and Swedish.
+ */
 export class WeekdayColors {
+  /**
+   * Initializes the weekday colors and mappings
+   * Monday to Sunday
+   * Swedish support included (måndag, tisdag, onsdag, torsdag, fredag, lördag, söndag)
+   */
   constructor () {
     this.WeekdayColors = {
       monday: '#8BC34A',
@@ -31,6 +40,12 @@ export class WeekdayColors {
     }
   }
 
+  /**
+   * Gets color based on day input (number or name)
+   * 
+   * @param {number|string} day - Day as number (0-6) or name (e.g., 'monday', 'tisdag')
+   * @returns {string} - Hex color code for the day
+   */
   getColorForDay (day) {
     if (typeof day === 'number') {
       // Convert day number to weekday name

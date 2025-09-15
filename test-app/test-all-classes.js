@@ -1,4 +1,3 @@
-// test-all-classes.js - Complete test suite for all classes
 import { Activity } from '../src/Activity.js'
 import { Child } from '../src/Child.js'
 import { DaySchedule } from '../src/DaySchedule.js'

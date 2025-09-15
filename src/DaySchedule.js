@@ -1,4 +1,17 @@
+/**
+ * DaySchedule class to manage daily schedules for multiple children with validation and visualization support.
+ * Includes methods for adding/removing children and activities, validating schedules,
+ * retrieving schedules, and exporting data.
+ */
 export class DaySchedule {
+
+  /**
+   * Constructor for DaySchedule
+   * 
+   * @param {date} date - The date for the schedule (defaults to today)
+   * @param {object} weekdayColors - Optional object for weekday color mapping
+   * @param {object} validator - Optional validator object for activity and schedule validation
+   */
   constructor (date = null, weekdayColors = null, validator = null) {
     this.date = date || new Date()
     this.weekdayColors = weekdayColors

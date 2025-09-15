@@ -10,8 +10,7 @@
     "test-weekdays": "node test-weekdays.js",
     "test-activity": "node test-activity.js",
     "test-child": "node test-app/test-child.js",
-    "test-all-classes": "node test-app/test-all-classes.js",
-    "lint:fix": "standard --fix"
+    "test:all": "node test-app/test-all-classes.js"
   },
   "keywords": [
     "schedule",
@@ -27,9 +26,5 @@
     "url": "https://github.com/blimob/Visual-Schedule.git"
   },
   "devDependencies": {
-    "@eslint/js": "^9.35.0",
-    "eslint": "^9.35.0",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.4.0"
   }
 }

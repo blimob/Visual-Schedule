@@ -1,4 +1,19 @@
+/**
+ * Activity Class for Child's Daily Schedule
+ * Manages activities with time, visual attributes, and status indicators.
+ */
 export class Activity {
+
+  /**
+   * Creates an Activity instance.
+   * 
+   * @param {string} name - Name of the activity (e.g., "Breakfast", "Playtime").
+   * @param {string} startTime - Start time in HH:MM format (24-hour).
+   * @param {string} endTime - End time in HH:MM format (24-hour).
+   * @param {object} visualConfig - Optional visual configuration.
+   * @param {string} visualConfig.color - Color code for the activity (e.g., "#FF5733").
+   * @param {string} visualConfig.icon - Icon representing the activity (e.g., "🍽️").
+   */
   constructor (name, startTime, endTime, visualConfig = {}) {
     if (!name || typeof name !== 'string') {
       throw new Error('Activity name must be a non-empty string.')
@@ -29,6 +44,12 @@ export class Activity {
     this.isCompleted = false
   }
 
+  /**
+   * Validates time format HH:MM (24-hour).
+   * 
+   * @param {string} timeString - Time string to validate.
+   * @return {boolean} - True if valid, false otherwise.
+   */
   isValidTimeFormat (timeString) {
     if (!timeString || typeof timeString !== 'string') {
       return false
@@ -49,6 +70,12 @@ export class Activity {
     return endMinutes - startMinutes
   }
 
+  /**
+   * Gets a default color based on activity name.
+   * 
+   * @param {string} activityName - Name of the activity.
+   * @return {string} - Hex color code. 
+   */
   getDefaultColor (activityName) {
     const name = activityName.toLowerCase()
 
@@ -70,6 +97,12 @@ export class Activity {
     return '#FFFFFF'
   }
 
+  /**
+   * Gets a default icon based on activity name.
+   * 
+   * @param {string} activityName - Name of the activity.
+   * @return {string} - Emoji icon.
+   */
   getDefaultIcon (activityName) {
     const name = activityName.toLowerCase()
 
@@ -91,6 +124,12 @@ export class Activity {
     return '⭐'
   }
 
+  /**
+   * Checks if this activity overlaps with another activity.
+   * 
+   * @param {Activity} otherActivity - Another Activity instance to check against.
+   * @return {boolean} - True if there is an overlap, false otherwise.
+   */
   overlapsWith (otherActivity) {
     if (!(otherActivity instanceof Activity)) {
       return false
@@ -103,11 +142,19 @@ export class Activity {
     return thisStart < otherEnd && otherStart < thisEnd
   }
 
+  /**
+   * Marks the activity as completed and sets the completion timestamp.
+   */
   markCompleted () {
     this.isCompleted = true
     this.completedAt = new Date()
   }
 
+  /**
+   * Converts the activity to a JSON representation.
+   * 
+   * @returns {object} - JSON representation of the activity.
+   */
   toJSON () {
     return {
       name: this.name,
