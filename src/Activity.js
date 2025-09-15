@@ -3,7 +3,6 @@
  * Manages activities with time, visual attributes, and status indicators.
  */
 export class Activity {
-
   /**
    * Creates an Activity instance.
    * 
