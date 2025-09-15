@@ -43,7 +43,7 @@ allColors.forEach(day => {
 // Test error handling
 console.log('\n🛡️ Error handling:')
 try {
-  const invalidDate = weekdays.getColorForDate('not a date')
+  console.log('Invalid day name:', weekdays.getColorForDay('funday'))
 } catch (error) {
   console.log('Invalid date error caught:', error.message)
 }

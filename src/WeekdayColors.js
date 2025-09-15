@@ -134,7 +134,7 @@ export class WeekdayColors {
 
     if (typeof day === 'string') {
       const normalizedDay = day.toLowerCase().trim()
-      return Object.prototype.hasOwnProperty.call(this.weekdayColors, normalizedDay) || 
+      return Object.prototype.hasOwnProperty.call(this.weekdayColors, normalizedDay) ||
        Object.prototype.hasOwnProperty.call(this.swedishWeekdays, normalizedDay)
     }
 
