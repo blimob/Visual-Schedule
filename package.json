@@ -1,12 +1,17 @@
 {
   "name": "visual-schedule",
   "version": "1.0.0",
-  "description": "A module for creating visual daily schedules with parent integration",
+  "description": "A module for creating visual daily schedules for children",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node test/index.test.js",
-    "start": "node test-app/test-app.js"
+    "test": "node test-app/test-app.js",
+    "start": "node test-app/test-app.js",
+    "test-weekdays": "node test-weekdays.js",
+    "test-activity": "node test-activity.js",
+    "test-child": "node test-app/test-child.js",
+    "test-all-classes": "node test-app/test-all-classes.js",
+    "lint:fix": "standard --fix"
   },
   "keywords": [
     "schedule",
@@ -20,5 +25,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/blimob/Visual-Schedule.git"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
+    "standard": "^17.1.2"
   }
 }

@@ -1,10 +1,10 @@
-import { Activity } from '../src/Activity.js';
+import { Activity } from '../src/Activity.js'
 
 let passedTests = 0
 let totalTests = 0
 const results = []
 
-function runTest(testName, testFunction, expectedResult) {
+function runTest (testName, testFunction, expectedResult) {
   totalTests++
   try {
     const result = testFunction()
@@ -22,11 +22,9 @@ function runTest(testName, testFunction, expectedResult) {
   }
 }
 
-// Tester här...
-runTest("Create valid activity", () => {
-  const activity = new Activity("Frukost", "08:00", "08:30")
-  return activity.name === "Breakfast"
+runTest('Create valid activity', () => {
+  const activity = new Activity('Frukost', '08:00', '08:30')
+  return activity.name === 'Breakfast'
 }, true)
 
-// Slutrapport
 console.log(`\nTests passed: ${passedTests}/${totalTests}`)

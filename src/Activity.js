@@ -1,6 +1,5 @@
 export class Activity {
-  constructor(name, startTime, endTime, visualConfig = {}) {
-
+  constructor (name, startTime, endTime, visualConfig = {}) {
     if (!name || typeof name !== 'string') {
       throw new Error('Activity name must be a non-empty string.')
     }
@@ -30,7 +29,7 @@ export class Activity {
     this.isCompleted = false
   }
 
-  isValidTimeFormat(timeString) {
+  isValidTimeFormat (timeString) {
     if (!timeString || typeof timeString !== 'string') {
       return false
     }
@@ -39,23 +38,24 @@ export class Activity {
     return timePattern.test(timeString)
   }
 
-  timeToMinutes(timeString) {
+  timeToMinutes (timeString) {
     const [hours, minutes] = timeString.split(':').map(Number)
     return hours * 60 + minutes
   }
 
-  calculateDuration() {
+  calculateDuration () {
     const startMinutes = this.timeToMinutes(this.startTime)
     const endMinutes = this.timeToMinutes(this.endTime)
     return endMinutes - startMinutes
   }
-  getDefaultColor(activityName) {
+
+  getDefaultColor (activityName) {
     const name = activityName.toLowerCase()
 
     if (name.includes('breakfast') || name.includes('lunch') || name.includes('dinner') || name.includes('snack')) {
       return '#FF6347'
     }
-    if (name.includes('play') || name.includes('game') || name.includes('playing') || name.includes('activity')) {
+    if (name.includes('play') || name.includes('game') || name.includes('playing')) {
       return '#8BC34A'
     }
     if (name.includes('rest') || name.includes('sleep') || name.includes('slumber') || name.includes('nap')) {
@@ -70,7 +70,7 @@ export class Activity {
     return '#FFFFFF'
   }
 
-  getDefaultIcon(activityName) {
+  getDefaultIcon (activityName) {
     const name = activityName.toLowerCase()
 
     if (name.includes('breakfast') || name.includes('lunch') || name.includes('dinner')) {
@@ -91,7 +91,7 @@ export class Activity {
     return '⭐'
   }
 
-  overlapWith(otherActivity) {
+  overlapsWith (otherActivity) {
     if (!(otherActivity instanceof Activity)) {
       return false
     }
@@ -103,12 +103,12 @@ export class Activity {
     return thisStart < otherEnd && otherStart < thisEnd
   }
 
-  markCompleted() {
+  markCompleted () {
     this.isCompleted = true
-    this.isCompletedAt = new Data()
+    this.completedAt = new Date()
   }
 
-  toJSON() {
+  toJSON () {
     return {
       name: this.name,
       startTime: this.startTime,
