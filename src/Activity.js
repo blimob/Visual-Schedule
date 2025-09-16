@@ -14,7 +14,7 @@ export class Activity {
    * @param {string} visualConfig.icon - Icon representing the activity (e.g., "🍽️").
    */
   constructor (name, startTime, endTime, visualConfig = {}) {
-    if (!name || typeof name !== 'string') {
+    if (!name || name.trim?.().length === 0) {
       throw new Error('Activity name must be a non-empty string.')
     }
     if (!this.isValidTimeFormat(startTime)) {
@@ -50,19 +50,21 @@ export class Activity {
    * @return {boolean} - True if valid, false otherwise.
    */
   isValidTimeFormat (timeString) {
-    if (!timeString || typeof timeString !== 'string') {
-      return false
-    }
-
-    const timePattern = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/
-    return timePattern.test(timeString)
+    if (!timeString) return false 
+    return /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/.test(timeString)
   }
 
+  /**
+   * Converts HH:MM time string to total minutes.
+   */
   timeToMinutes (timeString) {
     const [hours, minutes] = timeString.split(':').map(Number)
     return hours * 60 + minutes
   }
 
+  /**
+   * Calculates duration in minutes between start and end times.
+   */
   calculateDuration () {
     const startMinutes = this.timeToMinutes(this.startTime)
     const endMinutes = this.timeToMinutes(this.endTime)
