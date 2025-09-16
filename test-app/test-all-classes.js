@@ -64,7 +64,7 @@ runTest(
 runTest(
   'Activity - Mark completed',
   () => {
-    const activity = new Activity('Test', '08:00', '08:30')
+    const activity = new Activity('Test', '07:00', '07:30')
     activity.markCompleted()
     return activity.isCompleted
   },
@@ -95,7 +95,7 @@ runTest(
   'Child - Add activity to child',
   () => {
     const child = new Child('Test', 6)
-    const activity = { name: 'Breakfast', startTime: '08:00', endTime: '08:30' }
+    const activity = { name: 'Breakfast', startTime: '07:00', endTime: '07:30' }
     return child.addActivity(activity)
   },
   true
@@ -105,7 +105,7 @@ runTest(
   'Child - Remove activity from child',
   () => {
     const child = new Child('Test', 6)
-    const activity = { name: 'Breakfast', startTime: '08:00', endTime: '08:30' }
+    const activity = { name: 'Breakfast', startTime: '07:00', endTime: '07:30' }
     child.addActivity(activity)
     return child.removeActivity(activity)
   },
@@ -116,7 +116,7 @@ runTest(
   'Child - Get activity count',
   () => {
     const child = new Child('Test', 6)
-    const activity = { name: 'Breakfast', startTime: '08:00', endTime: '08:30' }
+    const activity = { name: 'Breakfast', startTime: '07:00', endTime: '07:30' }
     child.addActivity(activity)
     return child.getActivityCount()
   },
@@ -158,7 +158,7 @@ runTest(
   'WeekdayColors - Date support',
   () => {
     const weekdays = new WeekdayColors()
-    const monday = new Date('2024-01-01')
+    const monday = new Date('2025-09-22')
     return weekdays.getColorForDate(monday)
   },
   '#8BC34A'
@@ -189,7 +189,7 @@ runTest(
   'ScheduleValidator - Validate valid activity',
   () => {
     const validator = new ScheduleValidator()
-    const activity = new Activity('Test', '08:00', '08:30')
+    const activity = new Activity('Test', '07:00', '07:30')
     const result = validator.validateActivity(activity)
     return result.isValid
   },
@@ -259,7 +259,7 @@ runTest(
     const schedule = new DaySchedule()
     const child = new Child('Test', 6)
     const childId = schedule.addChild(child)
-    const activity = new Activity('Breakfast', '08:00', '08:30')
+    const activity = new Activity('Breakfast', '07:00', '07:30')
     return schedule.addActivity(childId, activity)
   },
   true
@@ -294,7 +294,7 @@ runTest(
     const schedule = new DaySchedule()
     const child = new Child('Test', 6)
     const childId = schedule.addChild(child)
-    const activity = new Activity('Breakfast', '08:00', '08:30')
+    const activity = new Activity('Breakfast', '07:00', '07:30')
     schedule.addActivity(childId, activity)
     const stats = schedule.getScheduleStats()
     return stats.totalChildren === 1 && stats.totalActivities === 1
@@ -324,7 +324,7 @@ runTest(
     const schedule = new DaySchedule(new Date(), weekdayColors)
     const child = new Child('Test', 6)
     const childId = schedule.addChild(child)
-    const activity = new Activity('Breakfast', '08:00', '08:30')
+    const activity = new Activity('Breakfast', '07:00', '07:30')
     schedule.addActivity(childId, activity)
     const visualSchedule = schedule.getVisualSchedule(childId)
     return visualSchedule !== null && visualSchedule.dayColor !== null
@@ -339,7 +339,7 @@ runTest(
     const schedule = new DaySchedule(new Date(), null, validator)
     const child = new Child('Test', 6)
     const childId = schedule.addChild(child)
-    const activity = new Activity('Breakfast', '08:00', '08:30')
+    const activity = new Activity('Breakfast', '07:00', '07:30')
     return schedule.addActivity(childId, activity)
   },
   true

@@ -60,7 +60,7 @@ export class WeekdayColors {
       }
     }
 
-    return this.WeekdayColors[day] || '#95A5A6' // Gray fallback
+    return this.WeekdayColors[day] || '#95A5A6' // Gray for invalid input
   }
 
   /**
@@ -149,7 +149,7 @@ export class WeekdayColors {
 
     if (typeof day === 'string') {
       const normalizedDay = day.toLowerCase().trim()
-      return Object.prototype.hasOwnProperty.call(this.weekdayColors, normalizedDay) ||
+      return Object.prototype.hasOwnProperty.call(this.WeekdayColors, normalizedDay) ||
        Object.prototype.hasOwnProperty.call(this.swedishWeekdays, normalizedDay)
     }
 
