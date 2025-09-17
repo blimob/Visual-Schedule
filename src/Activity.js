@@ -6,27 +6,12 @@ export class Activity {
   /**
    * Creates an Activity instance.
    * 
-   * @param {string} name - Name of the activity (e.g., "Breakfast", "Playtime").
+   * @param {string} name - Name of the activity.
    * @param {string} startTime - Start time in HH:MM format (24-hour).
    * @param {string} endTime - End time in HH:MM format (24-hour).
-   * @param {object} visualConfig - Optional visual configuration.
-   * @param {string} visualConfig.color - Color code for the activity (e.g., "#FF5733").
-   * @param {string} visualConfig.icon - Icon representing the activity (e.g., "🍽️").
+   * @param {object} visualConfig - Optional visual configuration (color, icon, pattern, priority).
    */
   constructor (name, startTime, endTime, visualConfig = {}) {
-    if (!name || typeof name !== 'string') {
-      throw new Error('Activity name must be a non-empty string.')
-    }
-    if (!this.isValidTimeFormat(startTime)) {
-      throw new Error('Invalid start time format. Use HH:MM')
-    }
-    if (!this.isValidTimeFormat(endTime)) {
-      throw new Error('Invalid end time format. Use HH:MM')
-    }
-    if (this.timeToMinutes(startTime) >= this.timeToMinutes(endTime)) {
-      throw new Error('Start time must be before end time.')
-    }
-
     this.name = name.trim()
     this.startTime = startTime
     this.endTime = endTime
@@ -42,6 +27,28 @@ export class Activity {
     this.createdAt = new Date()
     this.isCompleted = false
   }
+
+  activityName (name) {
+    if (!name || typeof name !== 'string') {
+      throw new Error('Activity name must be a non-empty string.')
+    }
+  }
+
+  startActivity (startTime) {
+    if (!this.isValidTimeFormat(startTime)) {
+      throw new Error('Invalid start time format. Use HH:MM')
+    }
+  }
+
+  endActivity (endTime) {
+    if (!this.isValidTimeFormat(endTime)) {
+      throw new Error('Invalid end time format.Use HH:MM')
+    }
+    if (this.timeToMinutes(endTime) <= this.timeToMinutes(this.startTime)) {
+      throw new Error('End time must be after start time.')
+    }
+  }
+
 
   /**
    * Validates time format HH:MM (24-hour).
