@@ -14,7 +14,7 @@ export class Activity {
    * @param {string} visualConfig.icon - Icon representing the activity (e.g., "🍽️").
    */
   constructor (name, startTime, endTime, visualConfig = {}) {
-    if (!name || name.trim?.().length === 0) {
+    if (!name || typeof name !== 'string') {
       throw new Error('Activity name must be a non-empty string.')
     }
     if (!this.isValidTimeFormat(startTime)) {
