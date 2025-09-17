@@ -72,60 +72,6 @@ export class Activity {
   }
 
   /**
-   * Gets a default color based on activity name.
-   * 
-   * @param {string} activityName - Name of the activity.
-   * @return {string} - Hex color code. 
-   */
-  getDefaultColor (activityName) {
-    const name = activityName.toLowerCase()
-
-    if (name.includes('breakfast') || name.includes('lunch') || name.includes('dinner') || name.includes('snack')) {
-      return '#FF6347'
-    }
-    if (name.includes('play') || name.includes('game') || name.includes('playing')) {
-      return '#8BC34A'
-    }
-    if (name.includes('rest') || name.includes('sleep') || name.includes('slumber') || name.includes('nap')) {
-      return '#FFB6C1'
-    }
-    if (name.includes('homework') || name.includes('reading') || name.includes('school') || name.includes('study')) {
-      return '#FFFF00'
-    }
-    if (name.includes('wash') || name.includes('shower') || name.includes('brush') || name.includes('hygiene')) {
-      return '#87CEEB'
-    }
-    return '#FFFFFF'
-  }
-
-  /**
-   * Gets a default icon based on activity name.
-   * 
-   * @param {string} activityName - Name of the activity.
-   * @return {string} - Emoji icon.
-   */
-  getDefaultIcon (activityName) {
-    const name = activityName.toLowerCase()
-
-    if (name.includes('breakfast') || name.includes('lunch') || name.includes('dinner')) {
-      return '🍽️'
-    }
-    if (name.includes('play') || name.includes('game')) {
-      return '🎮'
-    }
-    if (name.includes('rest') || name.includes('sleep')) {
-      return '😴'
-    }
-    if (name.includes('homework') || name.includes('school')) {
-      return '📚'
-    }
-    if (name.includes('shower') || name.includes('wash')) {
-      return ('🛁')
-    }
-    return '⭐'
-  }
-
-  /**
    * Checks if this activity overlaps with another activity.
    * 
    * @param {Activity} otherActivity - Another Activity instance to check against.
