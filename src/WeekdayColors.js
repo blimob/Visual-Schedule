@@ -122,7 +122,7 @@ export class WeekdayColors {
       return '#000000' // Black text
     }
 
-    // All other colors get white text
+    // All other colors get white text 
     return '#FFFFFF' // White text
   }
 
