@@ -9,46 +9,103 @@ export class Activity {
    * @param {string} name - Name of the activity.
    * @param {string} startTime - Start time in HH:MM format (24-hour).
    * @param {string} endTime - End time in HH:MM format (24-hour).
-   * @param {object} visualConfig - Optional visual configuration (color, icon, pattern, priority).
    */
-  constructor (name, startTime, endTime, visualConfig = {}) {
-    this.name = name.trim()
+  constructor(name, startTime, endTime) {
+    this.validateActivityName(name)
+    this.validateStartTime(startTime)
+    this.validateEndTime(endTime, startTime)
+    
+    this.name = name
     this.startTime = startTime
     this.endTime = endTime
     this.duration = this.calculateDuration()
-
-    this.visual = {
-      color: visualConfig.color || this.getDefaultColor(name),
-      icon: visualConfig.icon || this.getDefaultIcon(name),
-      pattern: visualConfig.pattern || 'solid',
-      priority: visualConfig.priority || 'normal'
-    }
-
+    this.visual = this.createDefaultVisualConfig()
     this.createdAt = new Date()
     this.isCompleted = false
   }
 
-  activityName (name) {
-    if (!name || typeof name !== 'string') {
+  /**
+   * Sets a visual icon for the activity.
+   * 
+   * @param {string} icon - Visual icon (emoji or text).
+   * @return {Activity} - Returns this for method chaining.
+   */
+  setIcon(icon) {
+    this.visual.icon = icon
+    return this
+  }
+
+  /**
+   * Sets the priority of the activity.
+   * 
+   * @param {string} priority - Priority level ('low', 'normal', 'high').
+   * @return {Activity} - Returns this for method chaining.
+   */
+  setPriority(priority) {
+    this.visual.priority = priority
+    return this
+  }
+
+  /**
+   * Sets the visual pattern of the activity.
+   * 
+   * @param {string} pattern - Visual pattern ('solid', 'dotted', 'striped').
+   * @return {Activity} - Returns this for method chaining.
+   */
+  setPattern(pattern) {
+    this.visual.pattern = pattern
+    return this
+  }
+
+  /**
+   * Validates activity name.
+   * 
+   * @param {string} name - Name to validate.
+   */
+  validateActivityName(name) {
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
       throw new Error('Activity name must be a non-empty string.')
     }
   }
 
-  startActivity (startTime) {
+  /**
+   * Validates start time.
+   * 
+   * @param {string} startTime - Start time to validate.
+   */
+  validateStartTime(startTime) {
     if (!this.isValidTimeFormat(startTime)) {
       throw new Error('Invalid start time format. Use HH:MM')
     }
   }
 
-  endActivity (endTime) {
+  /**
+   * Validates end time.
+   * 
+   * @param {string} endTime - End time to validate.
+   * @param {string} startTime - Start time to compare against.
+   */
+  validateEndTime(endTime, startTime) {
     if (!this.isValidTimeFormat(endTime)) {
-      throw new Error('Invalid end time format.Use HH:MM')
+      throw new Error('Invalid end time format. Use HH:MM')
     }
-    if (this.timeToMinutes(endTime) <= this.timeToMinutes(this.startTime)) {
+    if (this.timeToMinutes(endTime) <= this.timeToMinutes(startTime)) {
       throw new Error('End time must be after start time.')
     }
   }
 
+  /**
+   * Creates default visual configuration.
+   * 
+   * @return {object} - Default visual configuration.
+   */
+  createDefaultVisualConfig() {
+    return {
+      icon: null,
+      pattern: 'solid',
+      priority: 'normal'
+    }
+  }
 
   /**
    * Validates time format HH:MM (24-hour).
@@ -56,23 +113,28 @@ export class Activity {
    * @param {string} timeString - Time string to validate.
    * @return {boolean} - True if valid, false otherwise.
    */
-  isValidTimeFormat (timeString) {
-    if (!timeString) return false 
+  isValidTimeFormat(timeString) {
+    if (!timeString || typeof timeString !== 'string') return false
     return /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/.test(timeString)
   }
 
   /**
    * Converts HH:MM time string to total minutes.
+   * 
+   * @param {string} timeString - Time string to convert.
+   * @return {number} - Total minutes.
    */
-  timeToMinutes (timeString) {
+  timeToMinutes(timeString) {
     const [hours, minutes] = timeString.split(':').map(Number)
     return hours * 60 + minutes
   }
 
   /**
    * Calculates duration in minutes between start and end times.
+   * 
+   * @return {number} - Duration in minutes.
    */
-  calculateDuration () {
+  calculateDuration() {
     const startMinutes = this.timeToMinutes(this.startTime)
     const endMinutes = this.timeToMinutes(this.endTime)
     return endMinutes - startMinutes
@@ -84,7 +146,7 @@ export class Activity {
    * @param {Activity} otherActivity - Another Activity instance to check against.
    * @return {boolean} - True if there is an overlap, false otherwise.
    */
-  overlapsWith (otherActivity) {
+  overlapsWith(otherActivity) {
     if (!(otherActivity instanceof Activity)) {
       return false
     }
@@ -99,9 +161,46 @@ export class Activity {
   /**
    * Marks the activity as completed and sets the completion timestamp.
    */
-  markCompleted () {
+  markCompleted() {
     this.isCompleted = true
     this.completedAt = new Date()
+  }
+
+  /**
+   * Resets the activity to incomplete state.
+   */
+  markIncomplete() {
+    this.isCompleted = false
+    delete this.completedAt
+  }
+
+  /**
+   * Updates the activity times.
+   * 
+   * @param {string} startTime - New start time.
+   * @param {string} endTime - New end time.
+   */
+  updateTimes(startTime, endTime) {
+    this.validateStartTime(startTime)
+    this.validateEndTime(endTime, startTime)
+    
+    this.startTime = startTime
+    this.endTime = endTime
+    this.duration = this.calculateDuration()
+  }
+
+  /**
+   * Gets a formatted duration string.
+   * 
+   * @return {string} - Formatted duration (e.g., "1h 30m").
+   */
+  getFormattedDuration() {
+    const hours = Math.floor(this.duration / 60)
+    const minutes = this.duration % 60
+    
+    if (hours === 0) return `${minutes}m`
+    if (minutes === 0) return `${hours}h`
+    return `${hours}h ${minutes}m`
   }
 
   /**
@@ -109,8 +208,8 @@ export class Activity {
    * 
    * @returns {object} - JSON representation of the activity.
    */
-  toJSON () {
-    return {
+  toJSON() {
+    const json = {
       name: this.name,
       startTime: this.startTime,
       endTime: this.endTime,
@@ -119,5 +218,11 @@ export class Activity {
       isCompleted: this.isCompleted,
       createdAt: this.createdAt
     }
+    
+    if (this.completedAt) {
+      json.completedAt = this.completedAt
+    }
+    
+    return json
   }
 }
