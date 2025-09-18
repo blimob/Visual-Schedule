@@ -35,17 +35,6 @@ export class Activity {
   }
 
   /**
-   * Sets the visual pattern of the activity.
-   * 
-   * @param {string} pattern - Visual pattern ('solid', 'dotted', 'striped').
-   * @return {Activity} - Returns this for method chaining.
-   */
-  setPattern(pattern) {
-    this.visual.pattern = pattern
-    return this
-  }
-
-  /**
    * Validates activity name.
    * 
    * @param {string} name - Name to validate.
@@ -90,7 +79,6 @@ export class Activity {
   createDefaultVisualConfig() {
     return {
       icon: null,
-      pattern: 'solid',
     }
   }
 
