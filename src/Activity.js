@@ -11,10 +11,6 @@ export class Activity {
    * @param {string} endTime - End time in HH:MM format (24-hour).
    */
   constructor(name, startTime, endTime) {
-    this.validateActivityName(name)
-    this.validateStartTime(startTime)
-    this.validateEndTime(endTime, startTime)
-    
     this.name = name
     this.startTime = startTime
     this.endTime = endTime

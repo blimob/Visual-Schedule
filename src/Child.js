@@ -12,37 +12,42 @@ export class Child {
    * @param {object} visualPreferences - Optional visual preferences.
    */
   constructor (name, age, visualPreferences = {}) {
-    if (!name || typeof name !== 'string') {
-      throw new Error('Child name must be a non-empty string.')
-    }
-    if (age !== undefined && (typeof age !== 'number' || age < 0 || age > 18)) {
-      throw new Error('Child age must be a number between 0 and 18.')
-    }
-
-    this.name = name.trim()
+    this.name = name
     this.age = age
     this.id = this.generateChildId()
 
-    this.visualPreferences = {
-      favoriteColor: visualPreferences.favoriteColor || 'null',
-      iconStyle: visualPreferences.iconStyle || 'emoji',
-      fontSize: visualPreferences.fontSize || 'medium',
-      highContrast: visualPreferences.highContrast || false,
-      simplifiedView: visualPreferences.simplifiedView || false
-    }
-
     this.activities = []
-
-    this.createAt = new Date()
+    this.createdAt = new Date()
     this.lastModified = new Date()
   }
 
   /**
-   * Converts time string HH:MM to total minutes
+   * Validates child name.
    * 
-   * @returns {boolean} True if time format is valid HH:MM
-   * @param {string} timeStr - Time string to validate
+   * @param {string} name - Name to validate.
    */
+  validateChildName (name) {
+    if (!name || typeof name !== 'string') {
+      throw new Error('Child name must be a non-empty string.')
+    }
+  }
+
+  /**
+   * Validates child age.
+   * 
+   * @param {number} age - Age to validate.
+   */
+  validateChildAge (age) {
+    if (age !== undefined && (typeof age !== 'number' || age < 0 || age > 18)) {
+      throw new Error('Child age must be number between 0-18.')
+    }
+  }
+
+/**
+ * Generates a unique child ID based on timestamp and random string.
+ * 
+ * @return {string} Unique child ID.
+ */
   generateChildId () {
     const timestamp = Date.now()
     const random = Math.random().toString(36).substring(2, 5)
@@ -165,19 +170,6 @@ export class Child {
     }
 
     this.lastModified = new Date()
-  }
-
-  /**
-   * Gets the child's preferred color or falls back to activity-based colors
-   */
-  getPreferredColorForActivity (activity) {
-    // If child has a favorite color and simplified view is enabled, use that
-    if (this.visualPreferences.simplifiedView && this.visualPreferences.favoriteColor) {
-      return this.visualPreferences.favoriteColor
-    }
-
-    // Otherwise use the activity's default color
-    return activity.visual ? activity.visual.color : '#FFFFFF'
   }
 
   /**
