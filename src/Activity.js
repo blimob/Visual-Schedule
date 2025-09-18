@@ -18,7 +18,6 @@ export class Activity {
     this.name = name
     this.startTime = startTime
     this.endTime = endTime
-    this.duration = this.calculateDuration()
     this.visual = this.createDefaultVisualConfig()
     this.createdAt = new Date()
     this.isCompleted = false
@@ -118,17 +117,6 @@ export class Activity {
   }
 
   /**
-   * Calculates duration in minutes between start and end times.
-   * 
-   * @return {number} - Duration in minutes.
-   */
-  calculateDuration() {
-    const startMinutes = this.timeToMinutes(this.startTime)
-    const endMinutes = this.timeToMinutes(this.endTime)
-    return endMinutes - startMinutes
-  }
-
-  /**
    * Checks if this activity overlaps with another activity.
    * 
    * @param {Activity} otherActivity - Another Activity instance to check against.
@@ -174,22 +162,8 @@ export class Activity {
     
     this.startTime = startTime
     this.endTime = endTime
-    this.duration = this.calculateDuration()
   }
 
-  /**
-   * Gets a formatted duration string.
-   * 
-   * @return {string} - Formatted duration (e.g., "1h 30m").
-   */
-  getFormattedDuration() {
-    const hours = Math.floor(this.duration / 60)
-    const minutes = this.duration % 60
-    
-    if (hours === 0) return `${minutes}m`
-    if (minutes === 0) return `${hours}h`
-    return `${hours}h ${minutes}m`
-  }
 
   /**
    * Converts the activity to a JSON representation.
@@ -201,7 +175,6 @@ export class Activity {
       name: this.name,
       startTime: this.startTime,
       endTime: this.endTime,
-      duration: this.duration,
       visual: this.visual,
       isCompleted: this.isCompleted,
       createdAt: this.createdAt
