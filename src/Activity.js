@@ -36,17 +36,6 @@ export class Activity {
   }
 
   /**
-   * Sets the priority of the activity.
-   * 
-   * @param {string} priority - Priority level ('low', 'normal', 'high').
-   * @return {Activity} - Returns this for method chaining.
-   */
-  setPriority(priority) {
-    this.visual.priority = priority
-    return this
-  }
-
-  /**
    * Sets the visual pattern of the activity.
    * 
    * @param {string} pattern - Visual pattern ('solid', 'dotted', 'striped').
@@ -103,7 +92,6 @@ export class Activity {
     return {
       icon: null,
       pattern: 'solid',
-      priority: 'normal'
     }
   }
 

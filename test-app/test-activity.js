@@ -7,7 +7,6 @@ const activity = new Activity('Painting', '10:00', '11:30')
 // Fluent interface med method chaining  
 const styledActivity = new Activity('Important Meeting', '14:00', '15:00')
   .setIcon('💼')
-  .setPriority('high')
   .setPattern('striped')
 
 console.log('Duration:', activity.duration, 'minutes')
