@@ -11,14 +11,14 @@ export class Child {
    * @param {number} age - The age of the child (0-18).
    * @param {object} visualPreferences - Optional visual preferences.
    */
-  constructor (name, age, visualPreferences = {}) {
+  constructor (name, age) {
+    this.validateChildName(name)
+    this.validateChildAge(age)
+
     this.name = name
     this.age = age
     this.id = this.generateChildId()
-
     this.activities = []
-    this.createdAt = new Date()
-    this.lastModified = new Date()
   }
 
   /**
@@ -202,7 +202,6 @@ export class Child {
       age: this.age,
       visualPreferences: this.visualPreferences,
       activityCount: this.activities.length,
-      createdAt: this.createdAt,
       lastModified: this.lastModified
     }
   }
