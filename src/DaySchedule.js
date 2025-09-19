@@ -54,7 +54,7 @@ export class DaySchedule {
    * @param {string} childId - The ID of the child to remove.
    * @returns {boolean} True if removed
    */
-  removeChild() {
+  removeChild(childId) {
     return this.children.delete(childId)
   }
 
