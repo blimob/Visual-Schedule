@@ -1,4 +1,4 @@
-import { Activity } from "./Activity"
+import { Activity } from "../src/Activity.js"
 
 /**
  * Class representing a child in the system with activities and preferences.
@@ -29,7 +29,7 @@ export class Child {
    * @param {string} name - Name to validate.
    */
   validateChildName (name) {
-    if (!name || typeof name !== 'string') {
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
       throw new Error('Child name must be a non-empty string.')
     }
   }

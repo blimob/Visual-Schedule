@@ -30,6 +30,10 @@ console.log('=== Child activity TEST ===\n')
 
 console.log('🧒 Test 3: Add valid activity')
 try {
+  const child = new Child('Anna', 6)
+  console.log('   Name:', child.name)
+  console.log('   Age:', child.age)
+  console.log('   ID:', child.id)
   child.addActivity(new Activity('Äta glass', '10:00', '11:00'))
 } catch (error) {
   console.log('❌ Wrong:', error.message)
