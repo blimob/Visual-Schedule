@@ -71,7 +71,7 @@ export class Child {
   }
 
   /**
-   * Removes an activity from this child's schedule by reference or matching properties
+   * Removes an activity from this child's schedule
    * 
    * @param {object} activityToRemove - The activity object to remove
    * @returns {boolean} True if an activity was removed
@@ -79,23 +79,10 @@ export class Child {
   removeActivity (activityToRemove) {
     const initialLength = this.activities.length
 
-    this.activities = this.activities.filter(activity => {
-      if (activity === activityToRemove) {
-        return false
-      }
-      if (activityToRemove.name && activityToRemove.startTime) {
-        return !(activity.name === activityToRemove.name &&
-                activity.startTime === activityToRemove.startTime)
-      }
-      return true
-    })
-
-    const wasRemoved = this.activities.length < initialLength
-    if (wasRemoved) {
-      this.lastModified = new Date()
-    }
-
-    return wasRemoved
+    this.activities = this.activities.filter(activity => 
+      activity !== activityToRemove
+    )
+    return this.activities.length < initialLength
   }
 
   /**
@@ -103,26 +90,6 @@ export class Child {
    */
   getActivities () {
     return [...this.activities] // Return copy to prevent external modification
-  }
-
-  /**
-   * Gets activities for a specific time range
-   */
-  getActivitiesInRange (startTime, endTime) {
-    if (!this.isValidTimeFormat(startTime) || !this.isValidTimeFormat(endTime)) {
-      throw new Error('Invalid time format. Use HH:MM')
-    }
-
-    const startMinutes = this.timeToMinutes(startTime)
-    const endMinutes = this.timeToMinutes(endTime)
-
-    return this.activities.filter(activity => {
-      const activityStart = this.timeToMinutes(activity.startTime)
-      const activityEnd = this.timeToMinutes(activity.endTime)
-
-      // Activity overlaps with requested range
-      return activityStart < endMinutes && activityEnd > startMinutes
-    })
   }
 
   /**
@@ -140,43 +107,10 @@ export class Child {
   }
 
   /**
-   * Updates visual preferences for this child
-   */
-  updateVisualPreferences (newPreferences) {
-    if (!newPreferences || typeof newPreferences !== 'object') {
-      throw new Error('Visual preferences must be an object')
-    }
-
-    // Only update valid preference keys
-    const validKeys = ['favoriteColor', 'iconStyle', 'fontSize', 'highContrast', 'simplifiedView']
-
-    for (const [key, value] of Object.entries(newPreferences)) {
-      if (validKeys.includes(key)) {
-        this.visualPreferences[key] = value
-      }
-    }
-
-    this.lastModified = new Date()
-  }
-
-  /**
    * Counts total activities for this child
    */
   getActivityCount () {
     return this.activities.length
-  }
-
-  /**
-   * Gets today's activities (requires activities to have date info)
-   */
-  getTodaysActivities () {
-    const today = new Date().toDateString()
-    return this.activities.filter(activity => {
-      if (activity.date) {
-        return new Date(activity.date).toDateString() === today
-      }
-      return false
-    })
   }
 
   /**
@@ -187,9 +121,7 @@ export class Child {
       id: this.id,
       name: this.name,
       age: this.age,
-      visualPreferences: this.visualPreferences,
       activityCount: this.activities.length,
-      lastModified: this.lastModified
     }
   }
 
