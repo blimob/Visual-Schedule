@@ -1,4 +1,4 @@
-import { Activity } from "../src/Activity.js"
+import { Activity } from '../src/Activity.js'
 
 /**
  * Class representing a child in the system with activities and preferences.
