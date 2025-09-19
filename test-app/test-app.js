@@ -191,7 +191,3 @@ try {
 } catch (error) {
   console.log('❌ Error handling test failed:', error.message)
 }
-
-console.log('\n🎉 INTEGRATION TEST COMPLETE!')
-console.log('Your Visual Schedule module is working correctly!')
-console.log('Ready for other programmers to use! 🚀')
