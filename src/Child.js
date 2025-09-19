@@ -1,3 +1,5 @@
+import { Activity } from "./Activity"
+
 /**
  * Class representing a child in the system with activities and preferences.
  * Includes methods for managing activities and visual preferences.
@@ -61,12 +63,12 @@ export class Child {
    * @returns {boolean} True if time format is valid HH:MM
    */
   addActivity (activity) {
-    if (!activity || typeof activity !== 'object') {
-      throw new Error('Activity must be a valid object.')
+    if (!(activity instanceof Activity)) {
+      throw new Error('Activity must be an instance of Activity class.')
     }
-    if (!activity.name || !activity.startTime || !activity.endTime) {
-      throw new Error('Activity must have name, startTime, and endTime properties')
-    }
+    this.activities.push(activity)
+    return true
+  }
 
     const duplicate = this.activities.find(existing =>
       existing.name === activity.name &&
@@ -82,6 +84,9 @@ export class Child {
     this.lastModified = new Date()
     return true
   }
+
+
+
 
   /**
    * Removes an activity from this child's schedule by reference or matching properties
