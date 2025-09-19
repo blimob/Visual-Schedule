@@ -57,10 +57,10 @@ export class Child {
   }
 
   /**
-   * Validates time format HH:MM
+   * Add Activity to this child's schedule 
    * 
-   * @param {string} timeStr - Time string to validate
-   * @returns {boolean} True if time format is valid HH:MM
+   * @param {Activity} activity - The activity to add
+   * @returns {boolean} True if added successfully
    */
   addActivity (activity) {
     if (!(activity instanceof Activity)) {
@@ -69,24 +69,6 @@ export class Child {
     this.activities.push(activity)
     return true
   }
-
-    const duplicate = this.activities.find(existing =>
-      existing.name === activity.name &&
-      existing.startTime === activity.startTime &&
-      existing.endTime === activity.endTime
-    )
-
-    if (duplicate) {
-      throw new Error('Activity already exists for this child.')
-    }
-
-    this.activities.push(activity)
-    this.lastModified = new Date()
-    return true
-  }
-
-
-
 
   /**
    * Removes an activity from this child's schedule by reference or matching properties

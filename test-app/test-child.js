@@ -25,3 +25,14 @@ try {
   console.log('❌ Wrong:', error.message)
 }
 console.log()
+
+console.log('=== Child activity TEST ===\n')
+
+console.log('🧒 Test 3: Add valid activity')
+try {
+  child.addActivity(new Activity('Äta glass', '10:00', '11:00'))
+} catch (error) {
+  console.log('❌ Wrong:', error.message)
+}
+
+console.log()
