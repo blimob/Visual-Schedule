@@ -27,3 +27,14 @@ Testing was performed usning manual test applications that verify each component
 
 ### Child Class Tests
 
+| What was tested | How it was tested | Test result |
+|-----------------|-------------------|-------------|
+| Child constructor with valid data | Created Child with name="Anna",age=6 | PASS-Child created with unique ID |
+| Name validation | Attempted to create Child with empty string name | PASS-Correctly thre error "Child name must be a non-empty string" |
+| Age validation | Attempted to create Child with age=25(over limit) | PASS-Correctlry threw error "Child age must be number between 0-18" |
+| addActivity() method | Added valid Activity instance to Child | PASS-Activity added, getActivityCount() returned correct count |
+| Invalid activity rejection | Attempted to add string instead of Activity instance | PASS-Correctley threw error "Activity must be an instance of Activity class" |
+| removeActivity() method | Added activity then removed it by reference | PASS-Activity removed, count decreased correctly |
+| findActivitiesByName()method | Added activities and searched for partial name match | PASS-Found activities containing search term (case-insensitive) |
+
+### DaySchedule Class Test
