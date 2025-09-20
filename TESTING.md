@@ -50,3 +50,12 @@ Testing was performed usning manual test applications that verify each component
 | hasChild() method | Tested with existing and non-existing child IDs | PASS-Returned true for existing, false for non-existing |
 
 ### Weekday Colors Tests
+
+| What was tested | How it was tested | Test result |
+|-----------------|-------------------|-------------|
+| WEEKDAY_COLORS constant | Verified all 7 days have assigned colors | PASS-All days 0-6 have valid hex color codes |
+| getColorForDate() function | Tested with specific dates for each weekday | PASS-Returned correct colors for each day |
+| Invalid date handling | Passed string instead of Date object | PASS-Correctly threw error "Must be a valid Date object" |
+| Color format validation | Checked all colors follow #RRGGBB format | PASS-All colors ste valid 6-digit hex codes |
+
+### Integration Test 
