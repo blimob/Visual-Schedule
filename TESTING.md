@@ -44,4 +44,9 @@ Testing was performed usning manual test applications that verify each component
 | DayScheduke constructor | Created DaySchedule with default date and custom date | PASS-Schedule created with correct date |
 | addChild() method | Added valid Child instance to schedule | PASS-Child added, returned child ID |
 | Invalid child rejection | Attempted to add string instead of Child instance | PASS-Correctley threw error "Must be a Child instance" |
-| 
+| getChild() method | Added child then retieved by ID | PASS-Returned correct child instance | 
+| getChildSchedule() method | Added child with activities, retieved complete schedule | PASS-Returned object with child, activities and date |
+| removeChild() method | Added child then removed by ID | PASS-Child removed, getChildren() count decteased |
+| hasChild() method | Tested with existing and non-existing child IDs | PASS-Returned true for existing, false for non-existing |
+
+### Weekday Colors Tests
