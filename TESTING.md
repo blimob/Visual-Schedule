@@ -38,3 +38,10 @@ Testing was performed usning manual test applications that verify each component
 | findActivitiesByName()method | Added activities and searched for partial name match | PASS-Found activities containing search term (case-insensitive) |
 
 ### DaySchedule Class Test
+
+| What was tested | How it was tested | Test result |
+|-----------------|-------------------|-------------|
+| DayScheduke constructor | Created DaySchedule with default date and custom date | PASS-Schedule created with correct date |
+| addChild() method | Added valid Child instance to schedule | PASS-Child added, returned child ID |
+| Invalid child rejection | Attempted to add string instead of Child instance | PASS-Correctley threw error "Must be a Child instance" |
+| 
