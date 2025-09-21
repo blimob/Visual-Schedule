@@ -14,13 +14,11 @@ export class Activity {
     this.validateActivityName(name)
     this.validateStartTime(startTime)
     this.validateEndTime(endTime, startTime)
-    
+
     this.name = name
     this.startTime = startTime
     this.endTime = endTime
-    this.visual = this.createDefaultVisualConfig()
-    this.createdAt = new Date()
-    this.isCompleted = false
+    this.visual =  { icon: null }
   }
 
   /**
@@ -32,6 +30,24 @@ export class Activity {
   setIcon(icon) {
     this.visual.icon = icon
     return this
+  }
+
+  /**
+ * Checks if this activity overlaps with another activity.
+ * 
+ * @param {Activity} otherActivity - Another Activity instance to check against.
+ * @return {boolean} - True if there is an overlap, false otherwise.
+ */
+  overlapsWith(otherActivity) {
+    if (!(otherActivity instanceof Activity)) {
+      return false
+    }
+    const thisStart = this.timeToMinutes(this.startTime)
+    const thisEnd = this.timeToMinutes(this.endTime)
+    const otherStart = otherActivity.timeToMinutes(otherActivity.startTime)
+    const otherEnd = otherActivity.timeToMinutes(otherActivity.endTime)
+
+    return thisStart < otherEnd && otherStart < thisEnd
   }
 
   /**
@@ -105,40 +121,6 @@ export class Activity {
   }
 
   /**
-   * Checks if this activity overlaps with another activity.
-   * 
-   * @param {Activity} otherActivity - Another Activity instance to check against.
-   * @return {boolean} - True if there is an overlap, false otherwise.
-   */
-  overlapsWith(otherActivity) {
-    if (!(otherActivity instanceof Activity)) {
-      return false
-    }
-    const thisStart = this.timeToMinutes(this.startTime)
-    const thisEnd = this.timeToMinutes(this.endTime)
-    const otherStart = otherActivity.timeToMinutes(otherActivity.startTime)
-    const otherEnd = otherActivity.timeToMinutes(otherActivity.endTime)
-
-    return thisStart < otherEnd && otherStart < thisEnd
-  }
-
-  /**
-   * Marks the activity as completed and sets the completion timestamp.
-   */
-  markCompleted() {
-    this.isCompleted = true
-    this.completedAt = new Date()
-  }
-
-  /**
-   * Resets the activity to incomplete state.
-   */
-  markIncomplete() {
-    this.isCompleted = false
-    delete this.completedAt
-  }
-
-  /**
    * Updates the activity times.
    * 
    * @param {string} startTime - New start time.
@@ -147,7 +129,7 @@ export class Activity {
   updateTimes(startTime, endTime) {
     this.validateStartTime(startTime)
     this.validateEndTime(endTime, startTime)
-    
+
     this.startTime = startTime
     this.endTime = endTime
   }
@@ -167,11 +149,11 @@ export class Activity {
       isCompleted: this.isCompleted,
       createdAt: this.createdAt
     }
-    
+
     if (this.completedAt) {
       json.completedAt = this.completedAt
     }
-    
+
     return json
   }
 }
