@@ -26,3 +26,7 @@ An area where I could improve is with searchable names. Some shorter names like 
 
 ### Table of the longest methods
 
+| Method name | Lines | Reflection |
+|-------------|-------|------------|
+| constructor(name, startTime, endTime) (Activity) | 8 | Do one thing: The constructor only does one thing-creates and validates an activity. Function arguments: Has three arguments which Clean Code advises against, but is necessary for the activity's core data. Common triadic form: Arguments are related and logically grouped (name, start, end). Difficult to split without losing coherence. 
+| 
