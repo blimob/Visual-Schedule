@@ -33,24 +33,6 @@ export class Activity {
   }
 
   /**
- * Checks if this activity overlaps with another activity.
- * 
- * @param {Activity} otherActivity - Another Activity instance to check against.
- * @return {boolean} - True if there is an overlap, false otherwise.
- */
-  overlapsWith(otherActivity) {
-    if (!(otherActivity instanceof Activity)) {
-      return false
-    }
-    const thisStart = this.timeToMinutes(this.startTime)
-    const thisEnd = this.timeToMinutes(this.endTime)
-    const otherStart = otherActivity.timeToMinutes(otherActivity.startTime)
-    const otherEnd = otherActivity.timeToMinutes(otherActivity.endTime)
-
-    return thisStart < otherEnd && otherStart < thisEnd
-  }
-
-  /**
    * Validates activity name.
    * 
    * @param {string} name - Name to validate.

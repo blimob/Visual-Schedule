@@ -29,4 +29,4 @@ An area where I could improve is with searchable names. Some shorter names like 
 | Method name | Lines | Reflection |
 |-------------|-------|------------|
 | constructor(name, startTime, endTime) (Activity) | 8 | Do one thing: The constructor only does one thing-creates and validates an activity. Function arguments: Has three arguments which Clean Code advises against, but is necessary for the activity's core data. Common triadic form: Arguments are related and logically grouped (name, start, end). Difficult to split without losing coherence. 
-| overlapsWith(otherActivity) (Activity) | 10 | Do one thong: Only checks fot time overlap between activities. Function arguments: Monadic function which is ideal. Have ni side effects Pure function that doesn't modify any state. Use descriptive names: Method name clearly indicates what it does. Could potentially be smaller by extracting time conversion logic. |
+
