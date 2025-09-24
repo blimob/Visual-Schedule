@@ -29,4 +29,5 @@ An area where I could improve is with searchable names. Some shorter names like 
 | Method name | Lines | Reflection |
 |-------------|-------|------------|
 | constructor(name, startTime, endTime) (Activity) | 8 | Do one thing: The constructor only does one thing-creates and validates an activity. Function arguments: Has three arguments which Clean Code advises against, but is necessary for the activity's core data. Common triadic form: Arguments are related and logically grouped (name, start, end). Difficult to split without losing coherence. 
-
+| validateEndTime(endTime, startTime)(Activity) | 8 | Do one thing: Only validates end time logic and relationship to start time. Function arguments: Dyadic function-could potentially be improved by making it a method that alreaady has access to startTime. Small: Method is focused on a single validation concern. Descriptive names: Name clearly describes what the method validates. |
+| getChildSchedule(childId)(DaySchedule) | 9 | Do one thing: Retrieves and formates a child's schedule. Function arguments: Monadic function which is good. Command query separation: This is a query function that dosen't modify state. Return meaningful values: Returns structured object with child activities. and date information. |
