@@ -34,3 +34,30 @@ An area where I could improve is with searchable names. Some shorter names like 
 | addActivity(activity)(Child) | 6 | Do one thing: The method only adds an activity to the child's list after validation. Function arguments: Monadic function which is ideal according to Clean Code. Have no side effects: The method only modifies the child's activity list, no hidden side effects. Error handling: Uses exceptions for invalid input rather that return codes. |
 
 ### Chapter 3 reflection
+
+Chapter 3's emphasis on small, focused functions has been valuable in creating maintainable code. After simplifying my Activity class, I can see how removing unnecessary methods improved the overall design.
+
+Most of my functions follow the "do one thing" principle well. The constructor is inherently complex because it must validate multiple inputs, but I extracted validation into separate methods to keep each focused on a single concern.
+
+I'm satisfied with my adherence to meaningful function arguments. Most of my methods are monadic, which Clean Code identifies as ideal. The few dyadic functions like validateEndTime(endTime, startTime) have a logical relationship between arguments, though I could potentially improve this by restructuring the validation approach.
+
+The principle of "small" functions proved beneficial during refactoring. When I removed methods like markCompleted(), updateTimes(), and toJSON(), the class became much clearer. These methods added complexity without solving real problems for a children's calendar.
+
+One area where I applied Clean Code successfully was avoiding flag arguments and keeping methods focused. The overlapsWith() method does exactly one thing - checks for time overlap - without additional behavior based on parameters.
+
+The validation methods demonstrate both strengths and potential improvements in my approach. While they're focused and descriptive, the dyadic nature of validateEndTime() suggests there might be a better structural approach to validation that could make these methods more cohesive.
+
+### Overall Code Quality Reflection
+Working with Clean Code principles while building this Visual Schedule module taught me the critical importance of questioning every line of code. The most valuable lesson was learning to delete code, not just write it.
+
+Initially, I over-engineered the solution with complex validation classes, enterprise-level features, and unnecessary abstractions. The breakthrough came when I applied YAGNI (You Aren't Gonna Need It) ruthlessly. Removing the ScheduleValidator class, simplifying WeekdayColors to a simple object, and stripping the Activity class to its essentials dramatically improved the codebase.
+
+The Single Responsibility Principle proved essential for maintainability. Each class now has a clear, focused purpose: Activity represents a single scheduled item, Child manages a collection of activities, and DaySchedule coordinates which children are scheduled for a specific date. This separation made testing straightforward and the code self-documenting.
+
+Chapter 2's naming guidelines significantly impacted code readability. Moving from technical names like validateActivityInput() to intention-revealing names like validateActivityName() made the code's purpose immediately clear. The emphasis on avoiding mental mapping helped me choose names that don't require translation in the reader's mind.
+
+However, some Clean Code rules felt rigid when applied strictly. The preference for monadic functions, while generally beneficial, sometimes led to awkward parameter passing when dyadic functions would be more natural and readable.
+
+The most challenging aspect was balancing the "do one thing" principle with practical cohesion. Some methods that technically perform multiple steps are more readable when kept together than when artificially fragmented.
+
+The reflection process revealed that Clean Code's true value lies not in following rules blindly, but in developing judgment about when and how to apply principles. The goal is clear, maintainable code that solves real problems - sometimes that means following the guidelines strictly, and sometimes it means adapting them thoughtfully to the specific context and requirements.
