@@ -32,7 +32,7 @@ import { DaySchedule } './src/DaySchedule.js'
 import { getColorForDate } './src/weekdayColors.js'
 
 // Create a child
-const Leon = new Child('Leon', 6)
+const leon = new Child('Leon', 6)
 
 // Create activities
 const breakfast = new Activity('Breakfast', '07:30', '08:00').setIcon('🥐')
@@ -40,3 +40,26 @@ const school = new Activity('School', '08.30', '15:00').setIcon('📚')
 const play = new Activity('Play time', '15:30', '17:00').setIcon('⚽')
 
 // Add activities to child
+leon.addActivity(breakfast)
+leon.addActivity(school)
+leon.addActivity(play)
+
+// Create daily schedule
+const tody = new DaySchedule()
+today.addChild(leon)
+
+// Get child's schedule
+const schedule = today.getChildSchedule(leon.id)
+console.log(`${schedule.child.name} has ${schedule.activities.length} activities`)
+
+// Get day color
+const dayColor = getColorForDate(newDate())
+console.log(`Today's color: ${dayColor}`)
+````
+
+## API Reference
+### Activity Class
+
+Represents a single scheduled activity.
+
+#### Constructor
