@@ -8,3 +8,15 @@ A simple, clean JavaScript module for managing children's daily visual schedules
 * **Visual customization**: Add icons and visual elements to activities.
 * **Time validation**: Automatiz validation of time formats and logical constraints.
 * **Weekday colors**: Built-in color coding for different days of the week.  
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/blimob/Visual-Schedule.git
+
+# Navigate to project directory
+cd visual-schedule
+
+# The module uses ES6 modules - no build step required
+```
