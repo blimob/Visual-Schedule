@@ -18,7 +18,7 @@ export class Activity {
     this.name = name
     this.startTime = startTime
     this.endTime = endTime
-    this.visual =  { icon: null }
+    this.visual = { icon: null }
   }
 
   /**
@@ -89,5 +89,29 @@ export class Activity {
   timeToMinutes(timeString) {
     const [hours, minutes] = timeString.split(':').map(Number)
     return hours * 60 + minutes
+  }
+
+  /**
+   * Gets the duration of the activity in minutes.
+   * 
+   * @return {number} - Duration in minutes.
+   */
+  getDuration() {
+    return this.timeToMinutes(this.endTime) - this.timeToMinutes(this.startTime)
+  }
+
+  /**
+   * Gets the formatted duration as "Xh Ym".
+   * 
+   * @return {string} - Formatted duration.
+   */
+  getFormattedDuration() {
+    const totalMinutes = this.getDuration()
+    const hours = Math.floor(totalMinutes / 60)
+    const minutes = totalMinutes % 60
+
+    if (hours === 0) return `${minutes}m`
+    if (minutes === 0) return `${hours}h`
+    return `${hours}h ${minutes}m`
   }
 }
