@@ -70,17 +70,6 @@ export class Activity {
   }
 
   /**
-   * Creates default visual configuration.
-   * 
-   * @return {object} - Default visual configuration.
-   */
-  createDefaultVisualConfig() {
-    return {
-      icon: null,
-    }
-  }
-
-  /**
    * Validates time format HH:MM (24-hour).
    * 
    * @param {string} timeString - Time string to validate.
@@ -100,42 +89,5 @@ export class Activity {
   timeToMinutes(timeString) {
     const [hours, minutes] = timeString.split(':').map(Number)
     return hours * 60 + minutes
-  }
-
-  /**
-   * Updates the activity times.
-   * 
-   * @param {string} startTime - New start time.
-   * @param {string} endTime - New end time.
-   */
-  updateTimes(startTime, endTime) {
-    this.validateStartTime(startTime)
-    this.validateEndTime(endTime, startTime)
-
-    this.startTime = startTime
-    this.endTime = endTime
-  }
-
-
-  /**
-   * Converts the activity to a JSON representation.
-   * 
-   * @returns {object} - JSON representation of the activity.
-   */
-  toJSON() {
-    const json = {
-      name: this.name,
-      startTime: this.startTime,
-      endTime: this.endTime,
-      visual: this.visual,
-      isCompleted: this.isCompleted,
-      createdAt: this.createdAt
-    }
-
-    if (this.completedAt) {
-      json.completedAt = this.completedAt
-    }
-
-    return json
   }
 }

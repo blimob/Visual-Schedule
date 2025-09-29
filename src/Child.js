@@ -112,28 +112,4 @@ export class Child {
   getActivityCount () {
     return this.activities.length
   }
-
-  /**
-   * Exports child data as JSON
-   */
-  toJSON () {
-    return {
-      id: this.id,
-      name: this.name,
-      age: this.age,
-      activityCount: this.activities.length,
-    }
-  }
-
-  /**
-   * Exports child with all activities as JSON
-   */
-  toJSONWithActivities () {
-    return {
-      ...this.toJSON(),
-      activities: this.activities.map(activity =>
-        activity.toJSON ? activity.toJSON() : activity
-      )
-    }
-  }
 }
