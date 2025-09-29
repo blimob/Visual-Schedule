@@ -23,39 +23,37 @@ cd visual-schedule
 
 ### Quick start
 
-```bash
-javascript 
-
+```javascript
 import { Activity } from './src/Activity.js'
 import { Child } from './src/Child.js'
-import { DaySchedule } './src/DaySchedule.js'
-import { getColorForDate } './src/weekdayColors.js'
+import { DaySchedule } from './src/DaySchedule.js'
+import { getColorForDate } from './src/weekdayColors.js'
 
 // Create a child
-const leon = new Child('Leon', 6)
+const emma = new Child('Emma', 6)
 
 // Create activities
 const breakfast = new Activity('Breakfast', '07:30', '08:00').setIcon('🥐')
-const school = new Activity('School', '08.30', '15:00').setIcon('📚')
+const school = new Activity('School', '08:30', '15:00').setIcon('📚')
 const play = new Activity('Play time', '15:30', '17:00').setIcon('⚽')
 
 // Add activities to child
-leon.addActivity(breakfast)
-leon.addActivity(school)
-leon.addActivity(play)
+emma.addActivity(breakfast)
+emma.addActivity(school)
+emma.addActivity(play)
 
 // Create daily schedule
-const tody = new DaySchedule()
-today.addChild(leon)
+const today = new DaySchedule()
+today.addChild(emma)
 
 // Get child's schedule
-const schedule = today.getChildSchedule(leon.id)
+const schedule = today.getChildSchedule(emma.id)
 console.log(`${schedule.child.name} has ${schedule.activities.length} activities`)
 
 // Get day color
-const dayColor = getColorForDate(newDate())
+const dayColor = getColorForDate(new Date())
 console.log(`Today's color: ${dayColor}`)
-````
+```
 
 ## API Reference
 ### Activity Class
@@ -63,3 +61,46 @@ console.log(`Today's color: ${dayColor}`)
 Represents a single scheduled activity.
 
 #### Constructor
+
+```javascript
+new Activity(name, startTime, endTime)
+```
+
+* name (string): Name of the activity
+* startTime (string): Start time in HH:MM format(24-hour)
+* endTime (string): End time in HH:MM (24-hours)
+
+#### Method
+
+* `setIcon(icon)`: Set visual icon for the activity. Returns this for chaining.
+
+### Child class
+Manages a child's collection of activities.
+
+#### Constructor
+
+```javascript
+new Child(name, age)
+```
+* `name` (string): Child's name
+* `age` (number): Child's age (0-18)
+
+#### Method
+
+* `addActivity(activity)`: Add an Activity instance to the child's schedule
+* `removeActivity(activity)`: Remove an activity from the childäs schedule
+* `getActivities()`: Get array of all activities.
+* `findActivitiesByName(searchName)`: Search activities by name (partial match)
+* `getActivityCount()`: Get total number of activities
+
+### DaySchedule class
+
+Manages which children are scheduled for a specific date. 
+
+#### Constructor
+
+```javascript
+new DaySchedule(date)
+```
+* `date` (Date): Date for the schedule (defaults to today)
+
