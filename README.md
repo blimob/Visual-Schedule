@@ -66,9 +66,9 @@ Represents a single scheduled activity.
 new Activity(name, startTime, endTime)
 ```
 
-* name (string): Name of the activity
-* startTime (string): Start time in HH:MM format(24-hour)
-* endTime (string): End time in HH:MM (24-hours)
+* `name` (string): Name of the activity
+* `startTime` (string): Start time in HH:MM format(24-hour)
+* `endTime` (string): End time in HH:MM (24-hours)
 
 #### Method
 
@@ -104,3 +104,144 @@ new DaySchedule(date)
 ```
 * `date` (Date): Date for the schedule (defaults to today)
 
+* `addChild(child)`: Add a Child instance to the schedule
+* `removeChild(childId)`: Remove a child from the schedule
+* `getChild(childId)`: Get a specific child by ID
+* `getChildren()`: Get array of all children
+* `getChildSchedule(childId)`: Get complete schedule for a child
+* `hasChild(childId)`: Check if child exists in schedule
+
+### Weekday Colors
+
+Simple utilities for day-based color coding.
+
+```javascript
+import { WEEKDAY_COLORS, getColorForDate } from './src/weekdayColors.js'
+
+// Get color for specific date
+const color = getColorForDate(new Date())
+
+// Access colors directly
+const mondayColor = WEEKDAY_COLORS[1] // #8BC34A
+```
+
+## Examples
+
+### Basic Family Schedule
+
+```javascript
+// Create family members
+const mom = new Child('Mom', 35)
+const kid = new Child('Alex', 8)
+
+// Create schedule for Monday
+const monday = new DaySchedule(new Date('2025-01-06'))
+monday.addChild(mom)
+monday.addChild(kid)
+
+// Add activities
+kid.addActivity(new Activity('Breakfast', '07:00', '07:30').setIcon('🥞'))
+kid.addActivity(new Activity('School', '08:00', '15:00').setIcon('📚'))
+kid.addActivity(new Activity('Homework', '16:00', '17:00').setIcon('✏️'))
+
+mom.addActivity(new Activity('Work', '09:00', '17:00').setIcon('💼'))
+mom.addActivity(new Activity('Grocery shopping', '18:00', '19:00').setIcon('🛒'))
+
+// Get complete family schedule
+const families = monday.getChildren()
+families.forEach(family => {
+  console.log(`\n${family.name}'s Schedule:`)
+  family.getActivities().forEach(activity => {
+    const display = activity.visual.icon 
+      ? `${activity.visual.icon} ${activity.name}` 
+      : activity.name
+    console.log(`${activity.startTime}-${activity.endTime}: ${display}`)
+  })
+})
+```
+
+### Search and Filter
+
+```javascript
+const child = new Child('Sarah', 7)
+
+child.addActivity(new Activity('Math class', '09:00', '10:00'))
+child.addActivity(new Activity('Art class', '10:00', '11:00'))
+child.addActivity(new Activity('Math homework', '15:00', '16:00'))
+
+// Find all math-related activities
+const mathActivities = child.findActivitiesByName('math')
+console.log(`Found ${mathActivities.length} math activities`)
+```
+
+## Error Handling
+
+The module provides clear error messages for invalid input:
+
+```javascript
+// Invalid time format
+try {
+  new Activity('Bad time', '25:00', '26:00')
+} catch (error) {
+  console.log(error.message) // "Invalid start time format. Use HH:MM"
+}
+
+// Invalid child data
+try {
+  new Child('', 5)
+} catch (error) {
+  console.log(error.message) // "Child name must be a non-empty string."
+}
+
+// Invalid activity type
+try {
+  child.addActivity("Not an Activity object")
+} catch (error) {
+  console.log(error.message) // "Activity must be an instance of Activity class."
+}
+```
+
+## Design Philosophy
+
+This module follows Clean Code principles:
+
+* **Single Responsibility**: Each class has one focused purpose
+* **YAGNI**: Only includes features actually needed for scheduling
+* **Simple API**: Intuitive method names and clear documentation
+* **No Dependencies**: Pure JavaScript with no external libraries
+
+## Browser Compatibility
+
+* ES6 Modules support required
+* Modern browsers (Chrome 61+, Firefox 60+, Safari 10.1+)
+* Node.js 12+
+
+## Testing
+
+Run the test suite:
+
+```bash
+# Run all tests
+node test-app/test-integration.js
+node test-app/test-child-complete.js  
+node test-app/test-dayschedule.js
+node test-app/test-weekdaycolor.js
+```
+
+See [TESTNING.md](TESTNING.md) for detailed test documentation.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Follow existing code style and Clean Code principles
+4. Add tests for new functionality
+5. Submit a pull request
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Author
+
+Built as part of Clean Code coursework focusing on maintainable, well-documented JavaScript modules.
