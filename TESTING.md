@@ -32,10 +32,10 @@ Testing was performed usning manual test applications that verify each component
 | Child constructor with valid data | Created Child with name="Anna",age=6 | PASS-Child created with unique ID |
 | Name validation | Attempted to create Child with empty string name | PASS-Correctly thre error "Child name must be a non-empty string" |
 | Age validation | Attempted to create Child with age=25(over limit) | PASS-Correctlry threw error "Child age must be number between 0-18" |
-| addActivity() method | Added valid Activity instance to Child | PASS-Activity added, getActivityCount() returned correct count |
+| `addActivity()` method | Added valid Activity instance to Child | PASS-Activity added, getActivityCount() returned correct count |
 | Invalid activity rejection | Attempted to add string instead of Activity instance | PASS-Correctley threw error "Activity must be an instance of Activity class" |
-| removeActivity() method | Added activity then removed it by reference | PASS-Activity removed, count decreased correctly |
-| findActivitiesByName()method | Added activities and searched for partial name match | PASS-Found activities containing search term (case-insensitive) |
+| `removeActivity()` method | Added activity then removed it by reference | PASS-Activity removed, count decreased correctly |
+| `findActivitiesByName()`method | Added activities and searched for partial name match | PASS-Found activities containing search term (case-insensitive) |
 | `getActivitiesSorted` | Added activities with start and end time + name. | Pass-activities sorted by time. |
 | `getTotalScheduledTime` | Added hours and minutes to get the total scheduledTime | Pass-TotalScheduledTime: 600 minutes (10h 0min) |
 
@@ -43,22 +43,22 @@ Testing was performed usning manual test applications that verify each component
 
 | What was tested | How it was tested | Test result |
 |-----------------|-------------------|-------------|
-| DayScheduke constructor | Created DaySchedule with default date and custom date | PASS-Schedule created with correct date |
-| addChild() method | Added valid Child instance to schedule | PASS-Child added, returned child ID |
+| `DaySchedule` constructor | Created DaySchedule with default date and custom date | PASS-Schedule created with correct date |
+| `addChild()` method | Added valid Child instance to schedule | PASS-Child added, returned child ID |
 | Invalid child rejection | Attempted to add string instead of Child instance | PASS-Correctley threw error "Must be a Child instance" |
-| getChild() method | Added child then retieved by ID | PASS-Returned correct child instance | 
-| getChildSchedule() method | Added child with activities, retieved complete schedule | PASS-Returned object with child, activities and date |
-| removeChild() method | Added child then removed by ID | PASS-Child removed, getChildren() count decteased |
-| hasChild() method | Tested with existing and non-existing child IDs | PASS-Returned true for existing, false for non-existing |
+| `getChild()` method | Added child then retieved by ID | PASS-Returned correct child instance | 
+| `getChildSchedule()` method | Added child with activities, retieved complete schedule | PASS-Returned object with child, activities and date |
+| `removeChild()` method | Added child then removed by ID | PASS-Child removed, getChildren() count decteased |
+| `hasChild()` method | Tested with existing and non-existing child IDs | PASS-Returned true for existing, false for non-existing |
 | `getTotalActivities` | Total activities across all children | Pass-total activities across all children: 7 |
-| `getChildrenSorted | Children sorted by name | Pass-sorted alphabetically | 
+| `getChildrenSorted` | Children sorted by name | Pass-sorted alphabetically | 
 
 ### Weekday Colors Tests
 
 | What was tested | How it was tested | Test result |
 |-----------------|-------------------|-------------|
-| WEEKDAY_COLORS constant | Verified all 7 days have assigned colors | PASS-All days 0-6 have valid hex color codes |
-| getColorForDate() function | Tested with specific dates for each weekday | PASS-Returned correct colors for each day |
+| `WEEKDAY_COLORS` constant | Verified all 7 days have assigned colors | PASS-All days 0-6 have valid hex color codes |
+| `getColorForDate()` function | Tested with specific dates for each weekday | PASS-Returned correct colors for each day |
 | Invalid date handling | Passed string instead of Date object | PASS-Correctly threw error "Must be a valid Date object" |
 | Color format validation | Checked all colors follow #RRGGBB format | PASS-All colors ste valid 6-digit hex codes |
 
@@ -73,8 +73,8 @@ Testing was performed usning manual test applications that verify each component
 
 ### Summary
 
-- **Total Tests**: 23
-- **Passed**: 23
+- **Total Tests**: 4
+- **Passed**: 4
 - **Failed**: 0
 - **Known Issues**: None for now.
 
@@ -90,6 +90,6 @@ All public methods of all classes have been tested, including:
 
 ### Conclusion
 
-The Visual Schedule module passes all test and is ready for use by other programmers. ALl public interface methods work as documented, error handling is appropriate, and the classes integrate correctly to provide a complete scheduling solution for children's daily activities.
+The Visual Schedule module passes all tests and is ready for use by other programmers. All public interface methods work as documented, error handling is appropriate, and the classes integrate correctly to provide a complete scheduling solution for children’s daily activities. Each class has its own test app, and I primarily used `test-app.js` to confirm that all components interact with each other as intended.
 
 The module demonstrates clean, maintainable code that follows established software engineering principles while providing useful functionality for building calendar applications.
