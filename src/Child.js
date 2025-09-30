@@ -112,4 +112,26 @@ export class Child {
   getActivityCount () {
     return this.activities.length
   }
+
+  /**
+   * Gets activities sorted by start time.
+   * 
+   * @returns {Activity[]} Activities sorted by start time 
+   */
+  getActivitiesSorted() {
+    return [...this.activities].sort((a,b) =>
+    a.startTime.localeCompare(b.startTime)
+    )
+  }
+
+  /**
+   * Calculates total scheduled time for all activities in minutes.
+   * 
+   * @returns {number} Total scheduled time in minutes
+   */
+  getTotalScheduledTime() {
+    return this.activities.reduce((total, activity) => 
+      total + activity.getDuration(), 0
+    )
+  }
 }

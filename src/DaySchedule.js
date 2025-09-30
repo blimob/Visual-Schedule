@@ -86,4 +86,25 @@ export class DaySchedule {
   hasChild(childId) {
     return this.children.has(childId)
   }
+
+  /**
+   * Counts total activities across all children.
+   * 
+   * @returns {number} Total activity count.
+   */
+  getTotalActivities() {
+    return this.getChildren().reduce((total, child) => 
+    total + child.getActivityCount(), 0
+    )
+  }
+
+  /**
+   * Gets children sorted by name.
+   * 
+   * @returns {Child[]} Sorted array of children.
+   */
+  getChildrenSorted() {
+    return this.getChildren().sort((a, b) => 
+    a.name.localeCompare(b.name))
+  }
 }
