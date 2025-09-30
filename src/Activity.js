@@ -112,6 +112,6 @@ export class Activity {
 
     if (hours === 0) return `${minutes}m`
     if (minutes === 0) return `${hours}h`
-    return `${hours}h ${minutes}m`
+    return `${hours}h ${minutes}min`
   }
 }

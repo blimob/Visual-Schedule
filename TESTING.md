@@ -20,10 +20,10 @@ Testing was performed usning manual test applications that verify each component
 |-----------------|-------------------|-------------|
 | Activity constructor with valid data | Created Activity with name="Breakfast", startTime="07:30", endTime="08:00" | PASS- Activity created successfully |
 | Time format validation | Attempted to create Activity with invalid time="25:00" | PASS-Correctly threw error "End Time must be after start time" |
-| End time before start time | Created Activity with startTime="12:00", endTime="11:00" | PASS-Correctly thre error "end time must be after start time" |
-| setIcon() method | Created Activity and called setIcon("🍽️") | PASS-Icon set correctly, method returns Activity instance for chaining |
-| markCompleted() method | Created Activity and called markCompleted() | PASS-isCompleted set to true, completedAt timestamp added |
-| overlapsWith() method | Created two overlapping activities and tested overlap detection | PASS-Correctly detected overlap between activities |
+| End time before start time | Created Activity with `startTime`="12:00", `endTime`="11:00" | PASS-Correctly thre error "end time must be after start time" |
+| `setIcon()` method | Created Activity and called setIcon("🍽️") | PASS-Icon set correctly, method returns Activity instance for chaining |
+| `getDuration`| Created activity and called breakfast.getDuration() | Pass-duration (minutes): 45 |
+| `getFormattedDuration` | Created activity and called breakfast.getFormattedDuration() | Formatted duration: 45min |
 
 ### Child Class Tests
 
@@ -36,6 +36,8 @@ Testing was performed usning manual test applications that verify each component
 | Invalid activity rejection | Attempted to add string instead of Activity instance | PASS-Correctley threw error "Activity must be an instance of Activity class" |
 | removeActivity() method | Added activity then removed it by reference | PASS-Activity removed, count decreased correctly |
 | findActivitiesByName()method | Added activities and searched for partial name match | PASS-Found activities containing search term (case-insensitive) |
+| `getActivitiesSorted` | Added activities with start and end time + name. | Pass-activities sorted by time. |
+| `getTotalScheduledTime` | Added hours and minutes to get the total scheduledTime | Pass-TotalScheduledTime: 600 minutes (10h 0min) |
 
 ### DaySchedule Class Test
 
@@ -48,6 +50,8 @@ Testing was performed usning manual test applications that verify each component
 | getChildSchedule() method | Added child with activities, retieved complete schedule | PASS-Returned object with child, activities and date |
 | removeChild() method | Added child then removed by ID | PASS-Child removed, getChildren() count decteased |
 | hasChild() method | Tested with existing and non-existing child IDs | PASS-Returned true for existing, false for non-existing |
+| `getTotalActivities` | Total activities across all children | Pass-total activities across all children: 7 |
+| `getChildrenSorted | Children sorted by name | Pass-sorted alphabetically | 
 
 ### Weekday Colors Tests
 
