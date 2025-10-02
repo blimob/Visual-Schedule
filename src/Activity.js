@@ -107,7 +107,7 @@ export class Activity {
    */
   getFormattedDuration() {
     const min = this.getDuration()
-    const hours = Math.floor(m / 60)
+    const hours = Math.floor(min / 60)
     const minutes = min % 60
     return hours && minutes ? `${hours}h ${minutes}min` : hours ? `${hours}h` : `${minutes}min`
   }
