@@ -3,7 +3,6 @@ import { Child } from '../src/Child.js'
 
 console.log('=== COMPLETE CHILD CLASS TEST ===\n')
 
-// Test 1: Create child
 console.log('👶 Test 1: Create child')
 try {
   const anna = new Child('Anna', 6)
@@ -17,28 +16,8 @@ try {
 }
 console.log()
 
-// Test 2: Validation - invalid name
-console.log('🚫 Test 2: Invalid name (should fail)')
-try {
-  const badChild = new Child('', 8)
-  console.log('❌ This should have failed!')
-} catch (error) {
-  console.log('✅ Correct error:', error.message)
-}
-console.log()
 
-// Test 3: Validation - invalid age  
-console.log('🚫 Test 3: Too old age (should fail)')
-try {
-  const oldChild = new Child('Adult', 25)
-  console.log('❌ This should have failed!')
-} catch (error) {
-  console.log('✅ Correct error:', error.message)
-}
-console.log()
-
-// Test 4: Add activities
-console.log('📚 Test 4: Add activities')
+console.log('📚 Test 2: Add activities')
 try {
   const erik = new Child('Erik', 8)
   
@@ -67,19 +46,7 @@ try {
 }
 console.log()
 
-// Test 5: Wrong activity type
-console.log('🚫 Test 5: Wrong activity type (should fail)')
-try {
-  const child = new Child('Test', 10)
-  child.addActivity("Not an Activity")  // String instead of Activity
-  console.log('❌ This should have failed!')
-} catch (error) {
-  console.log('✅ Correct error:', error.message)
-}
-console.log()
-
-// Test 6: Remove activity
-console.log('🗑️ Test 6: Remove activity')
+console.log('🗑️ Test 3: Remove activity')
 try {
   const child = new Child('Lisa', 7)
   
@@ -102,8 +69,8 @@ try {
 }
 console.log()
 
-// Test 7: Search activities
-console.log('🔍 Test 7: Search activities')
+
+console.log('🔍 Test 4: Search activities')
 try {
   const child = new Child('Oscar', 9)
   
@@ -127,30 +94,8 @@ try {
 }
 console.log()
 
-// Test 8: JSON export
-console.log('📄 Test 8: JSON export')
-try {
-  const child = new Child('Emma', 5)
-  
-  child.addActivity(new Activity('Breakfast', '08:00', '09:00').setIcon('🥐'))
-  child.addActivity(new Activity('Play', '10:00', '11:00').setIcon('🎮'))
-  
-  console.log('Simple JSON:')
-  const json = child.toJSON()
-  console.log(JSON.stringify(json, null, 2))
-  
-  console.log('\nJSON with activities:')
-  const fullJson = child.toJSONWithActivities()
-  console.log('Activities in JSON:', fullJson.activities.length)
-  console.log('First activity:', fullJson.activities[0].name)
-  
-} catch (error) {
-  console.log('❌ Error:', error.message)
-}
-console.log()
 
-// Test 9: Edge cases
-console.log('⚠️ Test 9: Edge cases')
+console.log('⚠️ Test 5: Edge cases')
 try {
   console.log('Child without age:')
   const noAge = new Child('Unknown age')

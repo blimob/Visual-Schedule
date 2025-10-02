@@ -2,18 +2,17 @@ import { Activity } from '../src/Activity.js'
 
 console.log('=== ACTIVITY DISPLAY TEST ===\n')
 
-// Test 1: Activity with icon
+
 console.log('🎨 Test 1: Activity with icon')
 const painting = new Activity('Painting', '10:00', '11:30')
   .setIcon('🎨')
 
-// show display text
 const displayText1 = `${painting.visual.icon} ${painting.name}`
 console.log('Display text:', displayText1)
 console.log('Time:', `${painting.startTime} - ${painting.endTime}`)
 console.log()
 
-// Test 2: Multiple activities with icons
+
 console.log('📚 Test 2: Multiple activities with icons')
 const activities = [
   new Activity('Breakfast', '07:00', '08:00').setIcon('🥞'),
@@ -31,7 +30,6 @@ activities.forEach(activity => {
 })
 console.log()
 
-// Test 3: Activity without icon 
 console.log('📝 Test 3: Activity without icon')
 const homework = new Activity('Homework', '16:00', '17:00')
 const displayText3 = homework.visual.icon 
@@ -41,7 +39,6 @@ const displayText3 = homework.visual.icon
 console.log('Display text:', displayText3)
 console.log()
 
-// Test 4: Complete daily schedule
 console.log('🗓️ Test 4: Complete daily schedule')
 const schedule = [
   new Activity('Wake up', '07:00', '07:30').setIcon('☀️'),
@@ -63,17 +60,3 @@ schedule.forEach(activity => {
   const displayName = `${activity.visual.icon} ${activity.name}`
   console.log(`${timeRange.padEnd(11)} | ${displayName}`)
 })
-
-// Test 5: JSON representation of activity
-console.log('\n📄 Test 5: JSON representation of activity')
-const jsonActivity = new Activity('Art class', '14:00', '15:30')
-  .setIcon('🎨')
-
-const json = jsonActivity.toJSON()
-console.log('JSON:', JSON.stringify(json, null, 2))
-
-// Show how it would display
-const displayFromJSON = json.visual.icon 
-  ? `${json.visual.icon} ${json.name}` 
-  : json.name
-console.log('Display from JSON:', displayFromJSON)

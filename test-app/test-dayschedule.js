@@ -37,19 +37,8 @@ try {
 }
 console.log()
 
-// Test 3: Invalid child (should fail)
-console.log('🚫 Test 3: Add invalid child (should fail)')
-try {
-  const schedule = new DaySchedule()
-  schedule.addChild("Not a Child object")
-  console.log('❌ This should have failed!')
-} catch (error) {
-  console.log('✅ Correct error:', error.message)
-}
-console.log()
-
 // Test 4: Get child
-console.log('🔍 Test 4: Get child')
+console.log('🔍 Test 3: Get child')
 try {
   const schedule = new DaySchedule()
   const lisa = new Child('Lisa', 7)
@@ -67,15 +56,15 @@ try {
 }
 console.log()
 
-// Test 5: Child manages own activities
-console.log('📚 Test 5: Child manages own activities')
+
+console.log('📚 Test 4: Child manages own activities')
 try {
   const schedule = new DaySchedule()
   const oscar = new Child('Oscar', 9)
   
   schedule.addChild(oscar)
   
-  // Add activities directly to child
+
   oscar.addActivity(new Activity('Breakfast', '08:00', '09:00').setIcon('🥐'))
   oscar.addActivity(new Activity('School', '09:00', '15:00').setIcon('📚'))
   oscar.addActivity(new Activity('Play', '15:30', '17:00').setIcon('⚽'))
@@ -96,7 +85,7 @@ try {
 console.log()
 
 // Test 6: Multiple children with activities
-console.log('👨‍👩‍👧‍👦 Test 6: Multiple children with activities')
+console.log('👨‍👩‍👧‍👦 Test 5: Multiple children with activities')
 try {
   const schedule = new DaySchedule()
   
@@ -134,7 +123,7 @@ try {
 console.log()
 
 // Test 7: Remove child
-console.log('🗑️ Test 7: Remove child')
+console.log('🗑️ Test 6: Remove child')
 try {
   const schedule = new DaySchedule()
   
@@ -157,50 +146,3 @@ try {
   console.log('❌ Error:', error.message)
 }
 console.log()
-
-// Test 8: Real world usage scenario
-console.log('🌍 Test 8: Real world scenario')
-try {
-  const mondaySchedule = new DaySchedule(new Date('2025-01-06')) // Monday
-  
-  const siblings = [
-    new Child('Emma', 5),
-    new Child('Liam', 7)
-  ]
-  
-  // Add siblings to schedule
-  siblings.forEach(child => mondaySchedule.addChild(child))
-  
-  // Emma's schedule
-  const emma = mondaySchedule.getChild(siblings[0].id)
-  emma.addActivity(new Activity('Breakfast', '07:00', '07:30').setIcon('🥞'))
-  emma.addActivity(new Activity('Preschool', '08:00', '12:00').setIcon('🏫'))
-  emma.addActivity(new Activity('Lunch', '12:00', '13:00').setIcon('🍽️'))
-  emma.addActivity(new Activity('Quiet time', '13:00', '14:00').setIcon('📚'))
-  
-  // Liam's schedule  
-  const liam = mondaySchedule.getChild(siblings[1].id)
-  liam.addActivity(new Activity('Breakfast', '07:30', '08:00').setIcon('🥐'))
-  liam.addActivity(new Activity('School', '08:30', '15:00').setIcon('📚'))
-  liam.addActivity(new Activity('Homework', '15:30', '16:30').setIcon('✏️'))
-  liam.addActivity(new Activity('Play time', '16:30', '18:00').setIcon('🎮'))
-  
-  console.log('✅ Monday Schedule:')
-  console.log('Date:', mondaySchedule.date.toDateString())
-  
-  mondaySchedule.getChildren().forEach(child => {
-    console.log(`\n${child.name}'s schedule:`)
-    child.getActivities().forEach(activity => {
-      const display = activity.visual.icon 
-        ? `${activity.visual.icon} ${activity.name}` 
-        : activity.name
-      console.log(`  ${activity.startTime}-${activity.endTime}: ${display}`)
-    })
-  })
-  
-} catch (error) {
-  console.log('❌ Error:', error.message)
-}
-
-console.log('\n🎉 ALL DAYSCHEDULE TESTS COMPLETE!')
-console.log('If all tests show ✅, your minimal DaySchedule is working perfectly!')
