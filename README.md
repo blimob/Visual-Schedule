@@ -127,39 +127,6 @@ const mondayColor = WEEKDAY_COLORS[1] // #8BC34A
 
 ## Examples
 
-### Basic Family Schedule
-
-```javascript
-// Create family members
-const mom = new Child('Mom', 35)
-const kid = new Child('Alex', 8)
-
-// Create schedule for Monday
-const monday = new DaySchedule(new Date('2025-01-06'))
-monday.addChild(mom)
-monday.addChild(kid)
-
-// Add activities
-kid.addActivity(new Activity('Breakfast', '07:00', '07:30').setIcon('🥞'))
-kid.addActivity(new Activity('School', '08:00', '15:00').setIcon('📚'))
-kid.addActivity(new Activity('Homework', '16:00', '17:00').setIcon('✏️'))
-
-mom.addActivity(new Activity('Work', '09:00', '17:00').setIcon('💼'))
-mom.addActivity(new Activity('Grocery shopping', '18:00', '19:00').setIcon('🛒'))
-
-// Get complete family schedule
-const families = monday.getChildren()
-families.forEach(family => {
-  console.log(`\n${family.name}'s Schedule:`)
-  family.getActivities().forEach(activity => {
-    const display = activity.visual.icon 
-      ? `${activity.visual.icon} ${activity.name}` 
-      : activity.name
-    console.log(`${activity.startTime}-${activity.endTime}: ${display}`)
-  })
-})
-```
-
 ### Search and Filter
 
 ```javascript
@@ -222,8 +189,6 @@ Run the test suite:
 
 ```bash
 # Run all tests
-node test-app/test-integration.js
-node test-app/test-child-complete.js  
 node test-app/test-dayschedule.js
 node test-app/test-weekdaycolor.js
 ```
