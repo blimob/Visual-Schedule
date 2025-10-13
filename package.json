@@ -26,5 +26,6 @@
     "url": "https://github.com/blimob/Visual-Schedule.git"
   },
   "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
