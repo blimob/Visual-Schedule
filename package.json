@@ -26,6 +26,8 @@
     "url": "https://github.com/blimob/Visual-Schedule.git"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.3",
+    "babel-jest": "^29.7.0",
     "jest": "^29.7.0"
   }
 }
