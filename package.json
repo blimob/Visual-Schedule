@@ -5,12 +5,10 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node test-app/test-app.js",
-    "start": "node test-app/test-app.js",
-    "test-weekdays": "node test-weekdays.js",
-    "test-activity": "node test-activity.js",
-    "test-child": "node test-app/test-child.js",
-    "test:all": "node test-app/test-all-classes.js"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test:integration": "node test-app/test-app.js"
   },
   "keywords": [
     "schedule",
